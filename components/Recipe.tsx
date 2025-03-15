@@ -18,8 +18,8 @@ export default function Recipe({ name, emoji }: RecipeProps) {
     const emojii = emojiMap[emoji] ?? good_emoji;
 
     return (
-        <div className="flex border-2 m-1 p-2 border-gray-800">
-            <div className="border-4 border-black p-2 mr-2">
+        <div className="flex border-2 m-1 p-2 border-gray-800 rounded-2xl">
+            <div className="border-4 rounded-2xl border-black p-2 mr-2">
                 {/* Falls du Next.js benutzt, verwende <Image /> */}
                 <Image width={30} height={30} src={emojii} alt={emoji} />
             </div>

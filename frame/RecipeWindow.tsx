@@ -1,9 +1,21 @@
-import React from 'react';
+'use client'
 
-export default function Recipes_Window({ children }: { children: React.ReactNode }) {
+import React, { ReactNode } from 'react';
+
+interface CategoryWindowProps {
+    children?: ReactNode;
+}
+
+
+
+export default function Recipes_Window({ children }: CategoryWindowProps) {
+
+
+    
     return (
+        
         <div className="flex flex-col items-center">
-            <div className="border-2 w-96 dark:bg-slate-700 flex flex-col overflow-auto overflow-x-hidden h-[50vh] p-2">
+            <div className="border-10 border-black rounded-2xl w-96 dark:bg-slate-700 flex flex-col overflow-auto overflow-x-hidden h-[50vh] p-2">
                 {children}
             </div>
 
