@@ -14,7 +14,7 @@ export default function CategoryBox({ name, children }: CategoryBoxProps) {
     
         <span className="text-[26px] flex justify-center" >{name}</span>
         
-        <div className="border-4 h-40 m-2 w-[30vh]">
+        <div className="border-4 rounded-2xl border-black h-40 m-2 w-[30vh]">
             {children}
         </div>
 

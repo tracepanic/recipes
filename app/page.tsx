@@ -1,9 +1,9 @@
-import Categories from '../frame/CategoryBox';
+import CategoryWindow from '../frame/CategoryWindow';
 
 import Recipes_Window from '../frame/RecipeWindow';
 
 import Recipe from '../components/Recipe';
-import CategoryBox from '../components/Category';
+import CategoryBox from '../components/CategoryBox';
 
 export default function MainWindow() {
   return (
@@ -15,7 +15,7 @@ export default function MainWindow() {
                             <div className='block m-4'>
                                 
                                 {/* Cooking Time */}
-                                <div className='border-8 h-[40vh] mb-10 bg-slate-700'>
+                                <div className='border-10 border-black rounded-2xl h-[40vh] mb-10 bg-slate-700'>
                                     <span>Cooking Time</span>
                                 </div>
                            
@@ -29,7 +29,7 @@ export default function MainWindow() {
                     
                         {/* Right Block: Categories*/}    
                         <div className=' m-4 flex flex-wrap'>
-                            <Categories>
+                            <CategoryWindow>
                     
                                 <CategoryBox name="Breakfast">
                                     <Recipe name="Toast" emoji="middle"></Recipe>
@@ -47,7 +47,7 @@ export default function MainWindow() {
                                     <Recipe name="Something" emoji="good"></Recipe>
                                 </CategoryBox>
                     
-                            </Categories>
+                            </CategoryWindow>
                         </div>
                     
                        
