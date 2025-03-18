@@ -46,34 +46,36 @@ export default function Recipe({ name, emoji }: RecipeProps) {
     }
 
     function closeDragElement(e: MouseEvent) {
-      console.log("Mouse up position:", { x: e.clientX, y: e.clientY });
+      //HERE i am currently working.
 
-      const droppedElement = document.elementFromPoint(e.clientX, e.clientY);
+      // console.log("Mouse up position:", { x: e.clientX, y: e.clientY });
 
-      // Temporarily hide the dragged element so it doesn't block elementFromPoint
-      const draggedElement = draggableElement.current!;
-      draggedElement.style.display = "none";
+      // const droppedElement = document.elementFromPoint(e.clientX, e.clientY);
 
-      // Get the element underneath the dragged item
-      const droppedContainer = document.elementFromPoint(e.clientX, e.clientY);
+      // // Temporarily hide the dragged element so it doesn't block elementFromPoint
+      // const draggedElement = draggableElement.current!;
+      // draggedElement.style.display = "none";
 
-      // Show the dragged element again
-      draggedElement.style.display = "flex";
+      // // Get the element underneath the dragged item
+      // const droppedContainer = document.elementFromPoint(e.clientX, e.clientY);
 
-      if (droppedContainer) {
-        console.log("Dropped inside:", droppedContainer);
+      // // Show the dragged element again
+      // draggedElement.style.display = "flex";
 
-        // Find the closest valid container (e.g., a div with a specific class)
-        const validContainer = droppedContainer.closest(".box");
-        if (validContainer) {
-          validContainer.appendChild(draggedElement);
-          console.log("Moved successfully to:", validContainer);
-        } else {
-          console.log("Not a valid drop target.");
-        }
-      } else {
-        console.log("No element found at drop position.");
-      }
+      // if (droppedContainer) {
+      //   console.log("Dropped inside:", droppedContainer);
+
+      //   // Find the closest valid container (e.g., a div with a specific class)
+      //   const validContainer = droppedContainer.closest(".box");
+      //   if (validContainer) {
+      //     validContainer.appendChild(draggedElement);
+      //     console.log("Moved successfully to:", validContainer);
+      //   } else {
+      //     console.log("Not a valid drop target.");
+      //   }
+      // } else {
+      //   console.log("No element found at drop position.");
+      // }
 
       document.removeEventListener("mouseup", closeDragElement);
       document.removeEventListener("mousemove", moveElement);
