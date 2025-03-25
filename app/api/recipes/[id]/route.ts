@@ -1,8 +1,8 @@
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
+import { ObjectId } from "mongodb";
+import clientPromise from "@/lib/mongodb";
 
-// Get a single category by id
+// Get a single recipe by id
 export async function GET(
     req: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -12,7 +12,7 @@ export async function GET(
 
         if (!ObjectId.isValid(id)) {
             return NextResponse.json(
-                { error: "Invalid category id" },
+                { error: "Invalid recipe id" },
                 { status: 400, statusText: "BAD REQUEST" }
             );
         }
@@ -20,28 +20,28 @@ export async function GET(
         const client = await clientPromise;
         const db = client.db();
 
-        const category = await db
-            .collection("categories")
+        const recipe = await db
+            .collection("recipes")
             .findOne({ _id: new ObjectId(id) });
 
-        if (!category) {
+        if (!recipe) {
             return NextResponse.json(
-                { error: "Category not found" },
+                { error: "Recipe not found" },
                 { status: 404, statusText: "NOT FOUND" }
             );
         }
 
-        return NextResponse.json(category, { status: 200, statusText: "OK" });
+        return NextResponse.json(recipe, { status: 200, statusText: "OK" });
     } catch (error) {
-        console.log("CATEGORY_GET: ", error);
+        console.log("RECIPE_GET: ", error);
         return NextResponse.json(
-            { error: "Failed to fetch category" },
+            { error: "Failed to fetch recipe" },
             { status: 500, statusText: "INTERNAL SERVER ERROR" }
         );
     }
 }
 
-// Update category by id
+// Update recipe by id
 export async function PUT(
     req: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -51,12 +51,13 @@ export async function PUT(
 
         if (!ObjectId.isValid(id)) {
             return NextResponse.json(
-                { error: "Invalid category id" },
+                { error: "Invalid recipe id" },
                 { status: 400, statusText: "BAD REQUEST" }
             );
         }
 
-        const { name } = await req.json();
+        const { name, categoryIds, smiley, ingredients, preparation } =
+            await req.json();
 
         if (!name) {
             return NextResponse.json(
@@ -65,35 +66,68 @@ export async function PUT(
             );
         }
 
+        if (!ingredients) {
+            return NextResponse.json(
+                { error: "Ingredients are required" },
+                { status: 400, statusText: "BAD REQUEST" }
+            );
+        }
+
+        if (!preparation) {
+            return NextResponse.json(
+                { error: "Preparation is required" },
+                { status: 400, statusText: "BAD REQUEST" }
+            );
+        }
+
+        if (!["good", "average", "bad"].includes(smiley)) {
+            return NextResponse.json(
+                { error: "Smiley must be good, average or bad" },
+                { status: 400, statusText: "BAD REQUEST" }
+            );
+        }
+
+        if (
+            !Array.isArray(categoryIds) ||
+            !categoryIds.every((id) => ObjectId.isValid(id))
+        ) {
+            return NextResponse.json(
+                {
+                    error: "Invalid category id",
+                },
+                { status: 400, statusText: "BAD REQUEST" }
+            );
+        }
+
         const client = await clientPromise;
         const db = client.db();
 
         const res = await db
-            .collection("categories")
+            .collection("recipes")
             .findOneAndUpdate(
                 { _id: new ObjectId(id) },
-                { $set: { name } },
+                { $set: { categoryIds, smiley, ingredients, preparation } },
                 { returnDocument: "after" }
             );
 
         if (!res) {
             return NextResponse.json(
-                { error: "Category not found" },
+                { error: "Recipe not found" },
                 { status: 404, statusText: "NOT FOUND" }
             );
         }
 
         return NextResponse.json(res, { status: 200, statusText: "OK" });
     } catch (error) {
-        console.log("CATEGORY_PUT: ", error);
+        console.log("RECIPE_PUT: ", error);
         return NextResponse.json(
-            { error: "Failed to update category" },
+            { error: "Failed to update recipe" },
             { status: 500, statusText: "INTERNAL SERVER ERROR" }
         );
     }
 }
 
-// Delete category by id
+// Delete recipe by id
 export async function DELETE(
     req: NextRequest,
     { params }: { params: Promise<{ id: string }> }
@@ -103,7 +137,7 @@ export async function DELETE(
 
         if (!ObjectId.isValid(id)) {
             return NextResponse.json(
-                { error: "Invalid category id" },
+                { error: "Invalid recipe id" },
                 { status: 400, statusText: "BAD REQUEST" }
             );
         }
@@ -112,24 +146,24 @@ export async function DELETE(
         const db = client.db();
 
         const res = await db
-            .collection("categories")
+            .collection("recipes")
             .findOneAndDelete({ _id: new ObjectId(id) });
 
         if (!res) {
             return NextResponse.json(
-                { error: "Category not found" },
+                { error: "Recipe not found" },
                 { status: 404, statusText: "NOT FOUND" }
             );
         }
 
         return NextResponse.json(
-            { message: "Category deleted successfully" },
+            { message: "Recipe deleted successfully" },
             { status: 200, statusText: "OK" }
         );
     } catch (error) {
-        console.log("CATEGORY_DELETE: ", error);
+        console.log("RECIPE_DELETE: ", error);
         return NextResponse.json(
-            { error: "Failed to delete category" },
+            { error: "Failed to delete recipe" },
             { status: 500, statusText: "INTERNAL SERVER ERROR" }
         );
     }
