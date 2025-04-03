@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       mongodb:
-        specifier: ^6.13.1
+        specifier: ^6.15.0
         version: 6.15.0
       mongoose:
         specifier: ^8.12.1
@@ -166,8 +166,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@mongodb-js/saslprep@1.2.0':
-    resolution: {integrity: sha512-+ywrb0AqkfaYuhHs6LxKWgqbh3I72EpEgESCw37o+9qPx9WTCkgDm2B+eMrwehGtHBWHFU4GXvnSCNiFhhausg==}
+  '@mongodb-js/saslprep@1.2.1':
+    resolution: {integrity: sha512-1NCa8GsZ+OFLTw5KkKQS22wLS+Rs+y02sgkhr99Pm4OSXtSDHCJyq0uscPF0qA86ipGYH4PwtC2+a8Y4RKkCcg==}
 
   '@next/env@15.2.0':
     resolution: {integrity: sha512-eMgJu1RBXxxqqnuRJQh5RozhskoNUDHBFybvi+Z+yK9qzKeG7dadhv/Vp1YooSZmCnegf7JxWuapV77necLZNA==}
@@ -919,7 +919,7 @@ snapshots:
   '@img/sharp-win32-x64@0.33.5':
     optional: true
 
-  '@mongodb-js/saslprep@1.2.0':
+  '@mongodb-js/saslprep@1.2.1':
     dependencies:
       sparse-bitfield: 3.0.3
 
@@ -1261,7 +1261,7 @@ snapshots:
 
   mongodb@6.15.0:
     dependencies:
-      '@mongodb-js/saslprep': 1.2.0
+      '@mongodb-js/saslprep': 1.2.1
       bson: 6.10.3
       mongodb-connection-string-url: 3.0.2
 
