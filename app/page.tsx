@@ -3,6 +3,8 @@ import CategoryWindow from "../frame/CategoryWindow";
 import Recipes_Window from "../frame/RecipeWindow";
 
 import Recipe from "../components/Recipe";
+import Recipe2 from "../components/Recipe2";
+
 import CategoryBox from "../components/CategoryBox";
 
 export default function MainWindow() {
@@ -18,35 +20,36 @@ export default function MainWindow() {
                     </div>
 
                     {/* Recipes */}
-                    <Recipes_Window>
-                        <Recipe name="Noodels" emoji="middle"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
-                        <Recipe name="Cake" emoji="bad"></Recipe>
+                    <Recipes_Window id="valid">
+                        <Recipe2 id="1" name="Noodels" emoji="good"></Recipe2>
                     </Recipes_Window>
                 </div>
 
                 {/* Right Block: Categories*/}
                 <div className=" m-4 flex flex-wrap">
                     <CategoryWindow>
-                        <CategoryBox name="Breakfast">
-                            <Recipe name="Toast" emoji="middle"></Recipe>
+                        <CategoryBox id="valid" name="Breakfast">
+                            <Recipe2 id="2" name="Toast" emoji="good"></Recipe2>
                         </CategoryBox>
 
-                        <CategoryBox name="Lunch">
-                            <Recipe name="Eggs" emoji="good"></Recipe>
+                        <CategoryBox id="valid" name="Lunch">
+                            <Recipe2
+                                id="3"
+                                name="Eggs"
+                                emoji="middle"
+                            ></Recipe2>
                         </CategoryBox>
 
-                        <CategoryBox name="Snack">
-                            <Recipe name="Cake" emoji="good"></Recipe>
+                        <CategoryBox id="valid" name="Snack">
+                            <Recipe2 id="4" name="Cake" emoji="bad"></Recipe2>
                         </CategoryBox>
 
-                        <CategoryBox name="Dinner">
-                            <Recipe name="Something" emoji="good"></Recipe>
+                        <CategoryBox id="valid" name="Dinner">
+                            <Recipe2
+                                id="5"
+                                name="Noodels"
+                                emoji="good"
+                            ></Recipe2>
                         </CategoryBox>
                     </CategoryWindow>
                 </div>
