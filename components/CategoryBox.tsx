@@ -12,8 +12,6 @@ const CategoryBox = ({ id, name, children }: CategoryBoxProps) => {
         e.preventDefault();
     };
 
-    const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {};
-
     const handleDrop = (e: any) => {
         const id = e.dataTransfer.getData("text/plain");
 
@@ -40,7 +38,6 @@ const CategoryBox = ({ id, name, children }: CategoryBoxProps) => {
                 <div
                     className="border-4 relative py-2 rounded-2xl border-black min-h-40 m-2 w-[30vh]"
                     id={id}
-                    onDragEnter={(e) => handleDragEnter(e)}
                     onDragOver={(e) => handleDragOver(e)}
                     onDrop={(e) => handleDrop(e)}
                 >
