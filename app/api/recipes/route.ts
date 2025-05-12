@@ -23,7 +23,7 @@ export async function GET(): Promise<NextResponse> {
 // Create a new recipe
 export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
-        const { name, categoryIds, smiley, ingredients, preparation } =
+        const { name, category, smiley, ingredients, preparation } =
             await req.json();
 
         if (!name) {
@@ -54,13 +54,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             );
         }
 
-        if (
-            !Array.isArray(categoryIds) ||
-            !categoryIds.every((id) => ObjectId.isValid(id))
-        ) {
+        if (!["breakfast", "lunch", "Snack", "dinner"].includes(category)) {
             return NextResponse.json(
                 {
-                    error: "Invalid category id",
+                    error: "Invalid category",
                 },
                 { status: 400, statusText: "BAD REQUEST" }
             );
@@ -71,7 +68,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         const newRecipe = {
             name,
-            categoryIds,
+            category,
             smiley,
             ingredients,
             preparation,
