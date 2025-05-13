@@ -10,7 +10,7 @@ interface CategoryWindowProps {
 export default function Recipes_Window({ id, children }: CategoryWindowProps) {
     const [openModel, setOpenModel] = useState<boolean>(false);
     const [ingredient, setIngredient] = useState<string>("");
-    const [ingredients, setIngredients] = useState<Array<string>>([""]);
+    const [ingredients, setIngredients] = useState<Array<string>>([]);
     const handleDragOver = (e: any) => {
         e.preventDefault();
     };
