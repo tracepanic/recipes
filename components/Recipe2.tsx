@@ -25,25 +25,19 @@ const Recipe = ({ id, name, emoji }: RecipeProps) => {
         e.dataTransfer.setData("text/plain", id);
     };
 
-    const handledragEnter = (e: DragEvent<HTMLDivElement>) => {};
-
-    const handleDragEnd = (e: DragEvent<HTMLDivElement>) => {};
     const handlePictureDragStart = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
     };
 
-    const handleClick = (e: any) => {};
-
     return (
         <div
             id={id}
-            className="flex z-99  w-[98%] hover:cursor-grab translate-x-[-50%] left-[50%] border-2 p-2 relative border-gray-800 rounded-2xl"
+            className="flex z-99 my-1   w-[98%] hover:cursor-grab translate-x-[-50%] left-[50%] border-2 p-2 relative border-gray-800 rounded-2xl"
             draggable
             onDragStart={handleDragStart}
         >
             <div
                 className="border-4 rounded-2xl border-black p-2 mr-2"
-                onClick={handleClick}
                 onDragStart={handlePictureDragStart}
             >
                 <Image width={30} height={30} src={emojii} alt={emoji} />

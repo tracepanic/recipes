@@ -1,6 +1,6 @@
 "use client";
-
-import React, { ReactNode } from "react";
+import { RecipeModel } from "./RecipeModel";
+import React, { ReactNode, useState } from "react";
 
 interface CategoryWindowProps {
     id: string;
@@ -8,6 +8,9 @@ interface CategoryWindowProps {
 }
 
 export default function Recipes_Window({ id, children }: CategoryWindowProps) {
+    const [openModel, setOpenModel] = useState<boolean>(false);
+    const [ingredient, setIngredient] = useState<string>("");
+    const [ingredients, setIngredients] = useState<Array<string>>([]);
     const handleDragOver = (e: any) => {
         e.preventDefault();
     };
@@ -24,7 +27,7 @@ export default function Recipes_Window({ id, children }: CategoryWindowProps) {
     };
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex font-mono flex-col items-center">
             <div
                 className="border-10 relative border-black rounded-2xl w-96 dark:bg-slate-700 flex flex-col  h-[50vh] p-2"
                 id={id}
@@ -33,8 +36,18 @@ export default function Recipes_Window({ id, children }: CategoryWindowProps) {
             >
                 {children}
             </div>
-
-            <button className="border-4 mt-2 w-96 border-gray-950 bg-slate-800 hover:bg-opacity-20 active:bg-black">
+            <RecipeModel
+                ingredient={ingredient}
+                ingredients={ingredients}
+                open={openModel}
+                setIngredient={setIngredient}
+                setIngredients={setIngredients}
+                setOpen={setOpenModel}
+            />
+            <button
+                onClick={() => setOpenModel(true)}
+                className="border-4 mt-2 w-96 border-gray-950 bg-slate-800 hover:bg-opacity-20 active:bg-black"
+            >
                 + New
             </button>
         </div>
